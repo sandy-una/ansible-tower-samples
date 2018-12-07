@@ -9,9 +9,6 @@
     setup:
   roles:
     - { role: Datadog.datadog, become: yes }
-  environment:
-    http_proxy: http://10.36.1.132:3128
-    https_proxy: http://10.36.1.132:3128
   vars:
     datadog_api_key: "ad73aa03c8269ae2521c0b567a867bb1"
   post_tasks:
