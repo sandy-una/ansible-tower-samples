@@ -2,14 +2,21 @@
 - hosts: all
   gather_facts: no
   sudo: yes
+  pre_tasks:
+  - name: install python
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+  - name: Gathering Facts now
+    setup:
   roles:
     - { role: Datadog.datadog, become: yes }
+  environment:
+    http_proxy: http://10.36.1.132:3128
+    https_proxy: http://10.36.1.132:3128
   vars:
     datadog_api_key: "ad73aa03c8269ae2521c0b567a867bb1"
-  tasks:
+  post_tasks:
   - name: change yaml file for proxy
     shell: |
-      sudo touch test.txt
-      sudo echo "proxy:" >> test.txt
-      sudo echo "    https: http://10.36.1.132:3128" >> test.txt
-      
+      sudo echo "proxy:" >> /etc/datadog-agent/datadog.yaml
+      sudo echo "    https: http://10.36.1.132:3128" >> /etc/datadog-agent/datadog.yaml
+      sudo service datadog-agent restart
