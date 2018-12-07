@@ -1,7 +1,10 @@
-- name: Hello World Sample
-  hosts: all
+---
+- hosts: all
+  gather_facts: no
+  sudo: yes
   tasks:
-    - name: Hello Message
-      debug:
-        msg: "Hello World!"
-
+  - name: change yaml file for proxy
+    shell: |
+      sudo echo "proxy:" > /etc/datadog-agent/datadog.yaml
+      sudo echo "    https: http://10.36.1.132:3128" >> /etc/datadog-agent/datadog.yaml
+      
