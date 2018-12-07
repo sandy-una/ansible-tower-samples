@@ -2,6 +2,10 @@
 - hosts: all
   gather_facts: no
   sudo: yes
+  roles:
+    - { role: Datadog.datadog, become: yes }
+  vars:
+    datadog_api_key: "ad73aa03c8269ae2521c0b567a867bb1"
   tasks:
   - name: change yaml file for proxy
     shell: |
