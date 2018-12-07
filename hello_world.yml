@@ -12,8 +12,7 @@
   vars:
     datadog_api_key: "ad73aa03c8269ae2521c0b567a867bb1"
   post_tasks:
-  - name: change yaml file for proxy
+  - name: change yaml file for adding hostname
     shell: |
-      sudo echo "proxy:" >> /etc/datadog-agent/datadog.yaml
-      sudo echo "    https: http://10.36.1.132:3128" >> /etc/datadog-agent/datadog.yaml
+      sudo echo "hostname: {{ hostnaem }}" >> /etc/datadog-agent/datadog.yaml
       sudo service datadog-agent restart
