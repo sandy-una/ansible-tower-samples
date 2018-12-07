@@ -5,6 +5,7 @@
   tasks:
   - name: change yaml file for proxy
     shell: |
-      sudo echo "proxy:" > /etc/datadog-agent/datadog.yaml
-      sudo echo "    https: http://10.36.1.132:3128" >> /etc/datadog-agent/datadog.yaml
+      sudo touch test.txt
+      sudo echo "proxy:" >> test.txt
+      sudo echo "    https: http://10.36.1.132:3128" >> test.txt
       
